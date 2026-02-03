@@ -2,95 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   SERENIDADE - Design System
+   Filosofia: Minimalista, Acolhedor, Sereno
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cores empáticas - Stone/Slate palette */
+    --background: 40 6% 97%; /* slate-50 #FAFAF9 */
+    --foreground: 24 10% 10%; /* stone-900 #1C1917 */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 24 10% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 24 10% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Ações primárias - Stone sóbrio */
+    --primary: 25 5% 27%; /* stone-700 #44403C */
+    --primary-foreground: 40 6% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secundário - Stone suave */
+    --secondary: 30 6% 96%; /* stone-100 #F5F5F4 */
+    --secondary-foreground: 25 5% 27%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Para textos secundários */
+    --muted: 30 6% 96%;
+    --muted-foreground: 25 6% 33%; /* stone-600 #57534E */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Dourado discreto para destaques */
+    --accent: 43 47% 88%; /* Dourado suave */
+    --accent-foreground: 25 5% 27%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destrutivo - Apenas alertas críticos */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Sucesso */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --border: 30 6% 90%;
+    --input: 30 6% 90%;
+    --ring: 25 5% 27%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.625rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Sidebar */
+    --sidebar-background: 30 6% 96%;
+    --sidebar-foreground: 25 6% 33%;
+    --sidebar-primary: 25 5% 27%;
+    --sidebar-primary-foreground: 40 6% 97%;
+    --sidebar-accent: 43 47% 88%;
+    --sidebar-accent-foreground: 25 5% 27%;
+    --sidebar-border: 30 6% 90%;
+    --sidebar-ring: 25 5% 27%;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Cores de overlay para velório online */
+    --overlay-dark: 0 0% 0%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 24 10% 6%;
+    --foreground: 30 6% 96%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 24 10% 8%;
+    --card-foreground: 30 6% 96%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 24 10% 8%;
+    --popover-foreground: 30 6% 96%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 30 6% 96%;
+    --primary-foreground: 24 10% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 24 10% 12%;
+    --secondary-foreground: 30 6% 96%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 24 10% 12%;
+    --muted-foreground: 30 6% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 43 47% 30%;
+    --accent-foreground: 30 6% 96%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 24 10% 15%;
+    --input: 24 10% 15%;
+    --ring: 30 6% 96%;
+
+    --sidebar-background: 24 10% 8%;
+    --sidebar-foreground: 30 6% 96%;
+    --sidebar-primary: 30 6% 96%;
+    --sidebar-primary-foreground: 24 10% 10%;
+    --sidebar-accent: 43 47% 30%;
+    --sidebar-accent-foreground: 30 6% 96%;
+    --sidebar-border: 24 10% 15%;
+    --sidebar-ring: 30 6% 96%;
   }
 }
 
@@ -99,7 +110,116 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Tipografia institucional - Serif para tradição */
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Headings responsivos com clamp */
+  h1, .h1 {
+    @apply font-display font-semibold tracking-tight;
+    font-size: clamp(2rem, 5vw, 3.052rem);
+    line-height: 1.1;
+  }
+
+  h2, .h2 {
+    @apply font-display font-semibold tracking-tight;
+    font-size: clamp(1.75rem, 4vw, 2.441rem);
+    line-height: 1.2;
+  }
+
+  h3, .h3 {
+    @apply font-display font-medium;
+    font-size: clamp(1.5rem, 3vw, 1.953rem);
+    line-height: 1.3;
+  }
+
+  h4, .h4 {
+    @apply font-medium;
+    font-size: clamp(1.25rem, 2.5vw, 1.563rem);
+    line-height: 1.4;
+  }
+}
+
+@layer components {
+  /* Card com sombra elegante */
+  .card-elegant {
+    @apply bg-card rounded-lg border border-border/50;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  }
+
+  .card-elegant:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  }
+
+  /* Gradiente sutil para hero sections */
+  .gradient-subtle {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(30 6% 94%) 100%
+    );
+  }
+
+  /* Overlay escuro para velório */
+  .overlay-memorial {
+    background-color: hsla(var(--overlay-dark) / 0.92);
+  }
+
+  /* Container padrão */
+  .container-narrow {
+    @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animações sutis e respeitosas */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Focus ring acessível */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Skeleton loader suave (não agressivo) */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
   }
 }
