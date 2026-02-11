@@ -6,6 +6,18 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
+async function getRedirectPath(userId: string): Promise<string> {
+  const { data } = await supabase
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", userId);
+  const roles = data?.map((r) => r.role) || [];
+  if (roles.includes("admin") || roles.includes("editor")) {
+    return "/admin";
+  }
+  return "/dashboard";
+}
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,19 +41,19 @@ export default function Login() {
 
     setIsLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data: loginData, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     setIsLoading(false);
 
-    if (error) {
+    if (error || !loginData.user) {
       toast({
         title: "Erro ao entrar",
-        description: error.message === "Invalid login credentials" 
+        description: error?.message === "Invalid login credentials" 
           ? "Email ou senha incorretos" 
-          : error.message,
+          : (error?.message || "Erro desconhecido"),
         variant: "destructive",
       });
       return;
@@ -52,7 +64,8 @@ export default function Login() {
       description: "Login realizado com sucesso.",
     });
 
-    navigate("/dashboard");
+    const path = await getRedirectPath(loginData.user.id);
+    navigate(path);
   };
 
   const handleMagicLink = async (e: React.FormEvent) => {
