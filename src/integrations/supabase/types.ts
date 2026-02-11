@@ -290,7 +290,7 @@ export type Database = {
       show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
-      app_role: "titular" | "dependente" | "admin"
+      app_role: "titular" | "dependente" | "admin" | "editor"
       obituary_status: "rascunho" | "publicado" | "arquivado"
       payment_status: "pending" | "paid" | "overdue" | "cancelled"
     }
@@ -420,7 +420,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["titular", "dependente", "admin"],
+      app_role: ["titular", "dependente", "admin", "editor"],
       obituary_status: ["rascunho", "publicado", "arquivado"],
       payment_status: ["pending", "paid", "overdue", "cancelled"],
     },
