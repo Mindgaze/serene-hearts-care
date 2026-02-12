@@ -16,6 +16,8 @@ import Parceiros from "./pages/Parceiros";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import NotFound from "./pages/NotFound";
+import RecuperarSenha from "./pages/RecuperarSenha";
+import RedefinirSenha from "./pages/RedefinirSenha";
 import DashboardHome from "./pages/dashboard/DashboardHome";
 import DashboardPerfil from "./pages/dashboard/DashboardPerfil";
 import DashboardDependentes from "./pages/dashboard/DashboardDependentes";
@@ -51,6 +53,8 @@ const App = () => (
               <Route path="/parceiros" element={<Parceiros />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+              <Route path="/redefinir-senha" element={<RedefinirSenha />} />
             </Route>
 
             {/* Protected dashboard routes */}
