@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,19 @@ export default function Login() {
   const [isMagicLink, setIsMagicLink] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  // Handle redirect after magic link login
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if ((event === "SIGNED_IN" || event === "PASSWORD_RECOVERY") && session?.user) {
+          const path = await getRedirectPath(session.user.id);
+          navigate(path);
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +98,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: window.location.origin + "/dashboard",
+        emailRedirectTo: window.location.origin + "/login",
       },
     });
 
